@@ -1,10 +1,16 @@
 import os
+from bot import bot
+from dotenv import load_dotenv
+
 TOKEN=""
+VERSION="0.0.1"
 USERFILEDIR="users.txt"
 userSet={}
 def main():
     importUsers()
-    TOKEN=os.getenv("TOKEN")
+    load_dotenv('.env')
+    TOKEN=os.getenv('TOKEN')
+    bot.run(VERSION,TOKEN)
 
 
 def importUsers():
@@ -13,8 +19,6 @@ def importUsers():
         content=f.readlines()
         userSet={line.strip() for line in content}
     print("Finished importing users")
-    for user in userSet:
-        print(user)
 
 if __name__=="__main__":
     main()
